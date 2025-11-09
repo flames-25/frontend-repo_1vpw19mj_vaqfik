@@ -1,28 +1,42 @@
-import { useState } from 'react'
+import { useState } from "react";
+import Header from "./components/Header";
+import GoalsForm from "./components/GoalsForm";
+import PlanPreview from "./components/PlanPreview";
+import NutritionTips from "./components/NutritionTips";
+import FAQSafety from "./components/FAQSafety";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [input, setInput] = useState(null);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 text-gray-800">
+      <Header />
+
+      <main className="max-w-6xl mx-auto px-4 py-8 space-y-6">
+        <section className="text-center space-y-3">
+          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900">
+            Your AI health & fitness assistant
+          </h1>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Get a safe, personalized workout plan with nutrition guidance. Built on evidence-based
+            principles and tailored to your level, goals, and equipment.
+          </p>
+        </section>
+
+        <div className="grid lg:grid-cols-2 gap-6">
+          <GoalsForm onSubmit={setInput} />
+          <PlanPreview input={input} />
         </div>
-      </div>
+
+        <NutritionTips />
+        <FAQSafety />
+
+        <section className="text-center text-sm text-gray-500">
+          This is general information and not a substitute for professional medical advice.
+        </section>
+      </main>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
